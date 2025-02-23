@@ -17,8 +17,9 @@ const {z}=require("zod");
 const {Router}=require("express");
 const userRouter=Router();
 const jwt=require("jsonwebtoken");
-const {JWT_USER_PASSWORD}=require("./config.js")
+const JWT_USER_PASSWORD="bhcbbsjdnu"
 const {userModel,purchaseModel}=require("../Db.js")
+const {Usermiddleware}=require("../middleware/user.js")
     userRouter.post("/signup",async function(req,res){
         const requiredBody=z.object({
             email:z.string().min(10).max(50).email(),
@@ -69,7 +70,7 @@ const {userModel,purchaseModel}=require("../Db.js")
         }
     
     });
-    userRouter.get("/seeMyCourses",async function(req,res){
+    userRouter.get("/seeMyCourses",Usermiddleware,async function(req,res){
         const userId=req.userId;
         const purchased=await purchaseModel.find({
             userId

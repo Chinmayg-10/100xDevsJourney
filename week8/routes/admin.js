@@ -58,14 +58,13 @@ adminRouter.post("/login",async function(req,res){
     }
 });
 adminRouter.post("/course",Adminmiddleware,async function(req,res){
-    const adminId=req.userId;
     const{title,description,price,imageUrl}=req.body;
     const course=await courseModel.create({
         title:title,
         description:description,
         price:price,
         image_Url:imageUrl,
-        creator_id:adminId
+        creator_id:req.userId
     })
     res.json({
         message:"Course Created",
@@ -94,7 +93,7 @@ adminRouter.put("/course/bulk",Adminmiddleware,async function(req,res){
     const courses=await courseModel.find({
         creator_id:adminId
     });
-    res,json({
+    res.json({
         message:"All the courses are",
         courses
     })
