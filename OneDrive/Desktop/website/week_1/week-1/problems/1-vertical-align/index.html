@@ -1,0 +1,53 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horizontal Align</title>
+    <style>
+        .container {
+            width: 1200px;
+            margin: 0px auto;
+            background-color: red;
+        }
+
+        .content {
+            height: 500px;
+        }
+        .vertical_align{
+            display: flex;
+            justify-content: center;
+            height: 100%;
+            flex-direction: column;
+        }
+        .horizontal_align{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    
+        <div class="container">
+            <div class="content">
+                <div class="vertical_align">
+                    <div class="horizontal_align">
+                        <h1>Hello World</h1>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    
+        
+
+</body>
+
+</html>
