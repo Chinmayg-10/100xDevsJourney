@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text">
+    <button onclick="Addtodo()">Add Todo!</button>
+</body>
+<script>
+    let ctr=1;
+    function DeleteNode(index){
+        const element=document.getElementById(index);
+        element.parentNode.removeChild(element);
+    }
+    function Addtodo(){
+        const DatatoAdd=document.querySelector("input");
+        const space=document.createElement("div");
+        space.setAttribute("id",ctr);
+        
+        space.innerHTML="<div>"+DatatoAdd.value +'<div><button onClick="DeleteNode('+ ctr+ ')">Delete</button>';
+        ctr+=1;
+        DatatoAdd.value="";
+        const parentEl=document.querySelector("body");
+        parentEl.appendChild(space);
+
+    }
+</script>
+</html>

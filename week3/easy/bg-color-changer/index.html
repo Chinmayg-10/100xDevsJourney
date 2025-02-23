@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="main-bg">
+      <div
+        style="
+          width: 800px;
+          display: flex;
+          justify-content: space-around;
+          padding-top: 90vh;
+          padding-left: 25vw;
+        "
+      >
+        <div>
+          <button style="background-color: red" onclick="setColor('red')">
+            Red
+          </button>
+        </div>
+        <div>
+          <button style="background-color: yellow" onclick="setColor('yellow')">
+            Yellow
+          </button>
+        </div>
+        <div>
+          <button style="background-color: orange" onclick="setColor('orange')">
+            Orange
+          </button>
+        </div>
+        <div>
+          <button
+            style="background-color: black; color: white"
+            onclick="setColor('black')"
+          >
+            Black
+          </button>
+        </div>
+        <div>
+          <button style="background-color: purple" onclick="setColor('purple')">
+            Purple
+          </button>
+        </div>
+        <div>
+          <button style="background-color: green" onclick="setColor('green')">
+            Green
+          </button>
+        </div>
+        <div>
+          <button style="background-color: blue" onclick="setColor('blue')">
+            Default
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    function setColor(color) {
+      document.querySelector(".main-bg").style.backgroundColor = color;
+    }
+  </script>
+</html>
