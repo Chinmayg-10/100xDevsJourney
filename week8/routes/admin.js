@@ -1,9 +1,9 @@
 const {Router}=require("express");
-const adminRouter=Router();
-const {adminModel, courseModel}=require("../Db")
-const jwt=require("jsonwebtoken");
-const JWT_ADMIN_PASSWORD="bdhadvhgav"
-const {z}=require("zod");
+const adminRouter=Router();                             
+const {adminModel, courseModel}=require("../Db");
+const jwt=require("jsonwebtoken");                          
+const {JWT_ADMIN_PASSWORD}=require("")
+const {z}=require("zod");     
 const bcrypt=require("bcrypt");
 const {Adminmiddleware}=require("../middleware/admin.js");
 
