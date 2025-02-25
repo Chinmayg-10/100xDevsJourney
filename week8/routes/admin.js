@@ -9,7 +9,7 @@ const {Adminmiddleware}=require("../middleware/admin.js");
 
 adminRouter.post("/signup",async function(req,res){
     const requiredBody=z.object({
-        email:z.string().min(10).max(50).email(),
+        email:z.string().min(5).max(50).email(),
         password:z.string().min(7).max(15),
         firstName:z.string().min(3).max(15),
         lastName:z.string().min(3).max(15)
@@ -57,12 +57,12 @@ adminRouter.post("/login",async function(req,res){
     }
 });
 adminRouter.post("/course",Adminmiddleware,async function(req,res){
-    const{title,description,price,imageUrl}=req.body;
+    const{title,description,price,image_Url}=req.body;
     const course=await courseModel.create({
         title:title,
         description:description,
         price:price,
-        image_Url:imageUrl,
+        image_Url:image_Url,
         creator_id:req.userId
     })
     res.json({
@@ -70,9 +70,10 @@ adminRouter.post("/course",Adminmiddleware,async function(req,res){
         courseId:course._id
     })
 })
+//Update any course
 adminRouter.put("/course",Adminmiddleware,async function(req,res){
     const adminId=req.userId;
-    const{title,description,price,imageUrl,courseId}=req.body;
+    const{title,description,price,image_Url,courseId}=req.body;
     const course=await courseModel.updateOne({
         _id:courseId,
         creator_id:adminId
@@ -80,7 +81,7 @@ adminRouter.put("/course",Adminmiddleware,async function(req,res){
        { title:title,
         description:description,
         price:price,
-        image_Url:imageUrl
+        image_Url:image_Url
     })
     res.json({
         message:"Course Updated",
