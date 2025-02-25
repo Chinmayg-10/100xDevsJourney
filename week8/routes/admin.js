@@ -2,18 +2,17 @@ const {Router}=require("express");
 const adminRouter=Router();                             
 const {adminModel, courseModel}=require("../Db");
 const jwt=require("jsonwebtoken");                          
-const {JWT_ADMIN_PASSWORD}=require("")
+const JWT_ADMIN_PASSWORD="bdhadvhgav"
 const {z}=require("zod");     
 const bcrypt=require("bcrypt");
 const {Adminmiddleware}=require("../middleware/admin.js");
 
-// adminRouter.use(adminMiddleware);
 adminRouter.post("/signup",async function(req,res){
-const requiredBody=z.object({
-    email:z.string().min(10).max(50).email(),
-    password:z.string().min(7).max(15),
-    firstName:z.string().min(3).max(15),
-    lastName:z.string().min(3).max(15)
+    const requiredBody=z.object({
+        email:z.string().min(10).max(50).email(),
+        password:z.string().min(7).max(15),
+        firstName:z.string().min(3).max(15),
+        lastName:z.string().min(3).max(15)
 })
 const passDatawithSuccess=requiredBody.safeParse(req.body);
 if(!passDatawithSuccess.success){
