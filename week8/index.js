@@ -14,6 +14,7 @@ app.use("/admin",adminRouter);
 //it is put inside main function, so that we can await the mongoose.connect command
 async function main(){
     await mongoose.connect("mongodb+srv://Chinmay:D5qS.DaCvj6Fr9X@cluster0.wz5o6.mongodb.net/course-Selling");
+    console.log("connected to database server")
     app.listen(3000);
 }
 main();

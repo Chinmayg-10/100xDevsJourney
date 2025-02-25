@@ -6,7 +6,7 @@ const JWT_ADMIN_PASSWORD="bdhadvhgav"
 const {z}=require("zod");     
 const bcrypt=require("bcrypt");
 const {Adminmiddleware}=require("../middleware/admin.js");
-
+  
 adminRouter.post("/signup",async function(req,res){
     const requiredBody=z.object({
         email:z.string().min(5).max(50).email(),
@@ -101,3 +101,4 @@ adminRouter.put("/course/bulk",Adminmiddleware,async function(req,res){
 module.exports={
     adminRouter:adminRouter
 }
+//completed done!
