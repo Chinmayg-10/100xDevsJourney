@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function increase_cnt(){
+            const currentVal=document.getElementById("btn").innerHTML;
+            const currentCounter=currentVal.split(" ")[1];
+            const newValue=parseInt(currentCounter)+1;
+            document.getElementById("btn").innerHTML="counter "+newValue;
+        }
+    </script>
+</head>
+<body>
+    <button onclick="increase_cnt()" id="btn">counter 0</button>
+</body>
+</html>
