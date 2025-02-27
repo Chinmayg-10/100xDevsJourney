@@ -16,6 +16,8 @@
             state.count++;
             buttonComponentReRender();
         }
+
+        //the react library
         function buttonComponentReRender(){
             document.getElementById("button-counter").innerHTML="";
             const componenent=buttonComponent(state.count);
