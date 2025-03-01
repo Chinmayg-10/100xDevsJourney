@@ -62,7 +62,31 @@ app.post("/signin",async function(req,res){
         })
     }
 });
-app.post("/todo",function(req,res){
-    
-})
+function auth(req,res,next){
+    const token=req.headers.token;
+    const DecodedData=jwt.verify(token,JWT_SECRET);
+    if(DecodedData){
+        req.userId=DecodedData.id;
+        next();
+    }
+    else{
+        res.json({
+            message:"incorrect Token!"
+        })
+    }
+}
+app.use(auth);
+app.post("/todo",async function(req,res){
+    const title=req.body.title;
+    const done=req.body.done;
+    const userId=req.userId;
+    await TodoModel.create({
+        title:title,
+        done:done,
+        userId:userId
+    });
+    res.json({
+        message:"Todo created!"
+    })
+});
 app.listen(3000);
