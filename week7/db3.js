@@ -1,20 +1,19 @@
 const mongoose=require("mongoose");
-const { number, boolean } = require("zod");
 const Schema=mongoose.Schema;
 const ObjectId=Schema.ObjectId;
 
-const UserSchema=new Schema({
+const Users=new Schema({
     email:{type:String,unique:true},
     password:String,
     age:Number
 });
-const TodoSchema=new Schema({
+const Todos=new Schema({
     title:String,
     done:Boolean,
     userId:ObjectId
 });
-const UserModel=mongoose.Model("users",UserSchema);
-const TodoModel=mongoose.Model("todos",TodoSchema);
+const UserModel=mongoose.model("users",Users);
+const TodoModel=mongoose.model("todos",Todos);
 
 module.exports={
     UserModel:UserModel,
