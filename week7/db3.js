@@ -5,7 +5,7 @@ const ObjectId=Schema.ObjectId;
 
 const UserSchema=new Schema({
     email:{type:String,unique:true},
-    name:String,
+    password:String,
     age:Number
 });
 const TodoSchema=new Schema({
