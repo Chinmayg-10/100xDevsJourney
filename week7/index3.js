@@ -89,4 +89,13 @@ app.post("/todo",async function(req,res){
         message:"Todo created!"
     })
 });
+app.get("/todos",async function(req,res){
+    const userId=req.userId;
+    const todos=await TodoModel.find({
+        userId:userId
+    });
+    res.json({
+        todos
+    })
+});
 app.listen(3000);
