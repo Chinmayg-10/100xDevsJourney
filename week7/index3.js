@@ -35,5 +35,34 @@ app.post("/signup",async function(req,res){
         message:"signup Done!"
     })
 
+});
+app.post("/signin",async function(req,res){
+    const email=req.body.email;
+    const password=req.body.password;
+    const user=await UserModel.findOne({
+        email:email
+    });
+    if(!user){
+        res.status(400).json({
+            message:"User not found in database"
+        })
+    };
+    const passwordMatch=await bcrypt.compare(password,user.password);
+    if(passwordMatch){
+        const token=jwt.sign({
+            id:user._id.toString()
+        },JWT_SECRET);
+        res.json({
+            token:token
+        })
+    }
+    else{
+        res.json({
+            message:"Incorrect data inserted!"
+        })
+    }
+});
+app.post("/todo",function(req,res){
+    
 })
 app.listen(3000);
