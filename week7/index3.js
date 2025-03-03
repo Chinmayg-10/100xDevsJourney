@@ -57,7 +57,7 @@ app.post("/signin",async function(req,res){
         })
     }
     else{
-        res.json({
+        res.status(400).json({
             message:"Incorrect data inserted!"
         })
     }
