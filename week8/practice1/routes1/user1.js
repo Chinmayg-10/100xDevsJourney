@@ -5,6 +5,7 @@ const {z}=require("zod");
 const bcrypt=require("bcrypt");
 const jwt=require("jsonwebtoken");
 const USER_JWT_SECRET="dfsbhjdfshbfdshbhjfd"
+const {userMiddleware}=require("../middleware1/user1");
 userRouter.post("/signup",async function(req,res){
     const requiredBody=z.object({
         email:z.string().min(7).max(26).email(),
