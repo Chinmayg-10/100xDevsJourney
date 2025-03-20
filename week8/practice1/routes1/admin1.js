@@ -86,7 +86,17 @@ adminRouter.put("/course",AdminMiddleware,async function(req,res){
         message:"course updated",
         courseId:course._id
     })
-})
+});
+adminRouter.get("/course/bulk",AdminMiddleware,async function(req,res){
+    const adminId=req.userId;
+    const courses=await courseModel.find({
+        creatorId:adminId
+    });
+    res.json({
+        message:"all the courses are :",
+        courses
+    })
+});
 module.exports={
     adminRouter
 }
