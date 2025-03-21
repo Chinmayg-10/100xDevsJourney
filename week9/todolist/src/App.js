@@ -6,7 +6,7 @@ function App() {
       title:"Go to Gym",
       description:"Hit the gym regularly",
       done:false
-    },
+    }
   ])
   function AddTodo(){
     let newArray=[...todos];
