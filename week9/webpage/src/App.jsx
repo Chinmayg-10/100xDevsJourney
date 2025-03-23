@@ -1,15 +1,29 @@
 import React, { useState } from 'react';
 function App(){
+  const[posts,setPosts]=useState([]);
+  const postComponenets=posts.map(post => <PostComponent 
+  name={post.name}
+  subtitle={post.subtitle}
+  time={post.time}
+  image={post.image}
+  description={post.description}/>)
+
+  function addPost(){
+    setPosts([...posts,{
+      name:"chinmay",
+      subtitle:"10000 followers",
+      time:"6m ago",
+      image:"https://images.pexels.com/photos/14653174/pexels-photo-14653174.jpeg",
+      description:"what to know how to win big? Check out how"
+    }])
+  }
+
   return(
     <div style={{background:"#EDE8DC",height:"100vh"}}>
-      <div><Togglemessage/></div>
+      <button onClick={addPost}>Add Post</button>
       <div style={{display:"flex",justifyContent:"center"}}>
         <div>
-        <div><PostComponent/></div>
-        <br />
-      <div><PostComponent/></div>
-      <br />
-      <div><PostComponent/></div>
+          {postComponenets}
         </div>
       
       </div>
