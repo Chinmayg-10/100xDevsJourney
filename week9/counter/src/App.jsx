@@ -1,27 +1,27 @@
-import { useEffect } from "react";
-import { useState } from "react";
+// import { useEffect } from "react";
+// import { useState } from "react";
 
-function Chinmay() {
-    return <h2>Chinmay Component</h2>;
-}
+// function Chinmay() {
+//     return <h2>Chinmay Component</h2>;
+// }
 //conditional rendering
-function App(){
-  const [counterVisible,setcounterVisible]=useState(true);
-  useEffect(()=>{
-    setInterval(()=>{
-      setcounterVisible(c =>!c)
-    },5000);
-  },[])
+// function App(){
+//   const [counterVisible,setcounterVisible]=useState(true);
+//   useEffect(()=>{
+//     setInterval(()=>{
+//       setcounterVisible(c =>!c)
+//     },5000);
+//   },[])
 
-  return(
-    <div>
-      hi
-      {counterVisible ? <Counter></Counter> : null}
-      hello
-    </div>
-  ) 
+//   return(
+//     <div>
+//       hi
+//       {counterVisible ? <Counter></Counter> : null}
+//       hello
+//     </div>
+//   ) 
 
-}
+// }
 
 // function Counter() {
 //   const [count, setCount] = useState(0);
@@ -50,10 +50,10 @@ function App(){
 // export default App;
 
 ///////////////////////////////////////////////////////////CODE 2///////////////////////////////////
-// import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 // function App() {
-//     const [count1, setCount1] = useState(0);
-//     const [count2, setCount2] = useState(0);
+    const [count1, setCount1] = useState(0);
+    const [count2, setCount2] = useState(0);
 //     function increaseCount() {
 //         setCount1(count1 + 1);
 //     }
@@ -73,9 +73,10 @@ function App(){
 //     const [count,setCount]=useState(0);
 //     //hooking into the lifecycle events of react
 //     useEffect(function(){
-//         setInterval(function(){
+//         const interval=setInterval(function(){
 //             setCount(count => count+1)
 //         },1000);
+//         return ()=>clearInterval(interval)
 //     },[]) //dependency array, cleanup,fetch inside useffect
 //     return(
 //         <h1>Counter :{count}</h1>
