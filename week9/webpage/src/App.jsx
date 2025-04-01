@@ -25,6 +25,8 @@ function App(){
         <div>
           {postComponenets}
         </div>
+        <br />
+        
       
       </div>
       
@@ -34,7 +36,7 @@ function App(){
   )
 }
 
-const style={width:200,backgroundColor:"white",borderRadius:10,borderColor:"gray",borderWidth:1}
+const style={width:200,backgroundColor:"white",borderRadius:10,borderColor:"gray",borderWidth:1,padding:20}
 function PostComponent(){
   return(
     <div style={style}>

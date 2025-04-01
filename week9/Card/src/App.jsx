@@ -10,12 +10,12 @@
 //   {children}
 //   </div>
 // }
-// export default App
+// export default App;
 
 /////////////CODE2////////////
 // import React from 'react';
 
-// const Card = ({ children }) => {
+// function Card({children}){
 //     return (
 //         <div style={{
 //             border: '1px solid #ccc',
@@ -29,7 +29,7 @@
 //     );
 // };
 
-// const App = () => {
+//  function App(){
 //     return (
 //         <div>
 //             <Card>
@@ -44,28 +44,29 @@
 //         </div>
 //     );
 // };
+// export default App;
 
 ///////////////////code 3/////////////////////
 // function App(){
-//     // const todos=[{
-//     //     title:"Go to gym",
-//     //     done:true
-//     // },{
-//     //     title:"Eat food",
-//     //     done:false
-//     // }];
-//     // const todosComponents=todos.map(todo=><Todo title={todo.title} done={todo.done}/>)
+//     const todos=[{
+//         title:"Go to gym",
+//         done:true
+//     },{
+//         title:"Eat food",
+//         done:false
+//     }];
+//     const todosComponents=todos.map(todo=><Todo title={todo.title} done={todo.done}/>)
 
 //     return(
 //         <div>
-//             <Todo key={1} title={"Go to gym"} done={true}/>
-//             <Todo key={2} title={"Eat food"} done={false}/>
+//             <Todo key={2} title={"Go to gym"} done={true}/>
+//             <Todo key={1} title={"Eat food"} done={false}/>
 //         </div>
 //     )
 // };
 // function Todo({title,done}){
 //     return <div>
-//         {title}-{done?"Done!":"Not Done"}
+//         {title}-{done?"Done!":"Not Done!"}
 //     </div>
 // }
 // export default App;
