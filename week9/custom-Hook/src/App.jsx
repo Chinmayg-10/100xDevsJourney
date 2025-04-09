@@ -1,35 +1,84 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useRef, useState } from 'react'
 
-function App() {
-  const [count, setCount] = useState(0)
+//custom Hook
+// function useCounter(){
+//   const [count, setCount] = useState(0);
+//   function increaseCount(){
+//     setCount(c=>c+1);
+//   }
+//   return{
+//     count:count,
+//     increaseCount:increaseCount
+//   }
+// }
 
-  return (
+// function App() {
+//   const {count, increaseCount} = useCounter()
+
+//   return (
+//     <>
+//       <button onClick={increaseCount}>Counter {count}</button>
+//     </>
+//   )
+// }
+
+
+//Json object fetch
+import { UsepostTitle } from './Usepost'
+import { useFetch } from './Usepost'
+import { usePrev } from './use-prev';
+// function App(){
+//   const postTitle=UsepostTitle();
+//   return<>
+//   {postTitle}
+//   </>
+// }
+// function App(){
+//   const[currentPost,setCurrentpost]=useState(1);
+//   const {FinalData,Loading}=useFetch("https://jsonplaceholder.typicode.com/posts/"+currentPost);
+//   return(<>
+//   <button onClick={()=>{setCurrentpost(1)}}>1</button>
+//   <button onClick={()=>{setCurrentpost(2)}}>2</button>
+//   <button onClick={()=>{setCurrentpost(3)}}>3</button>
+//   {Loading?"Loading....":JSON.stringify(FinalData)}</>)
+// }
+
+
+//use-Prev custom hook
+// function App(){
+//   const[state,Setstate]=useState(0);
+//   const prev=usePrev(state)
+//   function increaseCnt(){
+//     Setstate(c=>c+1);
+//   }
+//   return(
+//     <div>
+//       <p>{state}</p>
+//       <button onClick={increaseCnt}>Click me</button>
+//       <p>the previous value was {prev}</p>
+//     </div>
+//   )
+// }
+
+//UseDebounced HOOK
+function useDebounce(originalFn){
+  const currentClock=useRef();
+
+  const fn=()=>{
+    clearTimeout(currentClock.current);
+    currentClock.current=setTimeout(originalFn,200);
+  }
+  return fn;
+} 
+function App(){
+  async function sendDatatoBackend(){
+    await fetch("api.amazon.com/search/");
+  }
+  const debouncedFn=useDebounce(sendDatatoBackend);
+
+  return(
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <input type="text" onChange={debouncedFn}/></>
   )
 }
-
 export default App
