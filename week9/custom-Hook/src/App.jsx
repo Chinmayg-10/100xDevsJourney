@@ -70,6 +70,7 @@ function useDebounce(originalFn){
   }
   return fn;
 } 
+
 function App(){
   async function sendDatatoBackend(){
     await fetch("api.amazon.com/search/");

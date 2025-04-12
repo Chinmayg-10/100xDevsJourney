@@ -3,7 +3,7 @@ export function UsepostTitle(){
     const[post,Setpost]=useState({});
 
   async function getposts(){
-    const response=await fetch("https://jsonplaceholder.typicode.com/posts/3");
+    const response=await fetch("https://jsonplaceholder.typicode.com/posts/1");
     const json=await response.json();
     Setpost(json);
   }
@@ -31,7 +31,7 @@ export function useFetch(url){
 
     //Refetching
     useEffect(()=>{
-        setInterval(getFinal,10*1000);//cleanup
+        setInterval(getFinal,5*1000);//cleanup
     },[])
     return(
         {FinalData,Loading}
