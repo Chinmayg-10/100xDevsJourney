@@ -52,7 +52,7 @@ import { CounterAtom, evenSelector } from "./store/atom/Counter";
 // function App() {
 //   return (
 //     <RecoilRoot>
-//       <Counter />
+//       <Counter/>
 //     </RecoilRoot>
 //   );
 // }
