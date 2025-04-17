@@ -129,40 +129,78 @@ import { CounterAtom, evenSelector } from "./store/atom/Counter";
 // })
 
 //Selector
-function App(){
-  return(
-    <RecoilRoot>
-      <Buttons/>
-      <Counter/>
-      <IsEven/>
-    </RecoilRoot>   
-  )
-}
-function Buttons(){
-  const setCount=useSetRecoilState(CounterAtom);
-  function increase(){
-    setCount(c=>c+2);
-  }
-  function decrease(){
-    setCount(c=>c-1)
-  }
-  return <div>
-    <button onClick={increase}>Increase</button>
-    <button onClick={decrease}>Decrease</button>
-  </div>
+// function App(){
+//   return(
+//     <RecoilRoot>
+//       <Buttons/>
+//       <Counter/>
+//       <IsEven/>
+//     </RecoilRoot>   
+//   )
+// }
+// function Buttons(){
+//   const setCount=useSetRecoilState(CounterAtom);
+//   function increase(){
+//     setCount(c=>c+2);
+//   }
+//   function decrease(){
+//     setCount(c=>c-1)
+//   }
+//   return <div>
+//     <button onClick={increase}>Increase</button>
+//     <button onClick={decrease}>Decrease</button>
+//   </div>
   
+// }
+// function Counter(){
+//   const count=useRecoilValue(CounterAtom);
+//   return(
+//     <p>{count}</p>
+//   )
+// }
+// function IsEven(){
+//   const even=useRecoilValue(evenSelector);
+//   return<>
+//   {even?"Even":"Odd"}
+//   </>
+// }
+
+//Asynchronous Data queries
+import {useRecoilState } from 'recoil'
+import { notifications, totalNotificationSelector } from './store/atom/Counter'
+import axios from 'axios'
+
+function App() {
+  return <RecoilRoot>
+    <MainApp />
+  </RecoilRoot>
 }
-function Counter(){
-  const count=useRecoilValue(CounterAtom);
-  return(
-    <p>{count}</p>
+
+function MainApp() {
+  const [networkCount, setNetworkCount] = useRecoilState(notifications)
+  const totalNotificationCount = useRecoilValue(totalNotificationSelector);
+
+  useEffect(() => {
+    // fetch
+    axios.get("https://sum-server.100xdevs.com/notifications")
+      .then(res => {
+        setNetworkCount(res.data)
+      })
+  }, [])
+
+  return (
+    <>
+      <button>Home</button>
+      
+      <button>My network ({networkCount.networks >= 100 ? "99+" : networkCount.networks})</button>
+      <button>Jobs {networkCount.jobs}</button>
+      <button>Messaging ({networkCount.messaging})</button>
+      <button>Notifications ({networkCount.notifications})</button>
+
+      <button>Me ({totalNotificationCount})</button>
+    </>
   )
 }
-function IsEven(){
-  const even=useRecoilValue(evenSelector);
-  return<>
-  {even?"Even":"Odd"}
-  </>
-}
+
 export default App;
 
