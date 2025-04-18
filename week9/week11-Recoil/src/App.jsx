@@ -1,6 +1,6 @@
 import { createContext, useContext, useState ,useEffect,memo} from "react";
 import React from "react";
-import { RecoilRoot, useRecoilValue, useSetRecoilState } from "recoil";
+import { RecoilRoot, useRecoilStateLoadable, useRecoilValue, useSetRecoilState } from "recoil";
 import { CounterAtom, evenSelector } from "./store/atom/Counter";
 // const CountContext=createContext();
 // function CountContextProvider({children}){
@@ -195,23 +195,52 @@ import { todosAtomFamily } from "./atom";
 // }
 
 //ATOM FAMILY
+// function App(){
+//   return <RecoilRoot>
+//     <Todo id={1}/>
+//     <Todo id={2}/>
+//   </RecoilRoot>
+// }
+// function Todo({id}){
+//   const currentTodo=useRecoilValue(todosAtomFamily(id));
+//   return(
+//     <>
+//     {currentTodo.title}
+//     <br />
+//     {currentTodo.description}
+//     <br />
+//     <br />
+//     </>
+//   )
+// }
+
+//use recoil Loadable
 function App(){
-  return <RecoilRoot>
-    <Todo id={1}/>
-    <Todo id={2}/>
-  </RecoilRoot>
+  return(
+    <RecoilRoot>
+      <Todo id={1}/>
+      <Todo id={2}/>
+
+    </RecoilRoot>
+  )
 }
 function Todo({id}){
-  const currentTodo=useRecoilValue(todosAtomFamily(id));
-  return(
-    <>
-    {currentTodo.title}
-    <br />
-    {currentTodo.description}
-    <br />
-    <br />
-    </>
-  )
+  const [todo,setTodo]=useRecoilStateLoadable(todosAtomFamily(id));
+  //contents
+  //state
+  if(todo.state==="loading"){
+    return<div>
+      loading...
+    </div>
+  }
+  else if(todo.state==="hasValue"){
+    return <div>
+      {todo.contents.title}
+      <br />
+      {todo.contents.description}
+      <br /><br />
+    </div>
+  }
 }
 
 export default App;
