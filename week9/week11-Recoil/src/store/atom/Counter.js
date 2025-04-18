@@ -19,11 +19,19 @@ export const evenSelector=selector({
 export const notifications = atom({
     key: "networkAtom",
     default: {
-        networks: 4, 
-        jobs: 6, 
-        messaging: 3, 
-        notifications: 3
+        networks: 3, 
+        jobs: 0, 
+        messaging: 4, 
+        notifications:112
+
     }
+    // default:selector({
+    //     key:"networkAtomSelector",
+    //     get:async()=>{
+    //         const res=await axios.get("https://sum-server.100xdevs.com/notifications");
+    //         return res.data
+    //     }
+    // })
 });
 
 export const totalNotificationSelector = selector({

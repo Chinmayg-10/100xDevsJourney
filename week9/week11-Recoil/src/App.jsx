@@ -169,36 +169,47 @@ import { CounterAtom, evenSelector } from "./store/atom/Counter";
 import {useRecoilState } from 'recoil'
 import { notifications, totalNotificationSelector } from './store/atom/Counter'
 import axios from 'axios'
+import { todosAtomFamily } from "./atom";
 
-function App() {
+// function App() {
+//   return <RecoilRoot>
+//     <MainApp />
+//   </RecoilRoot>
+// }
+
+// function MainApp() {
+//   const [networkCount, setNetworkCount] = useRecoilState(notifications) //both values and state
+//   const totalNotificationCount = useRecoilValue(totalNotificationSelector);
+//   return (
+//     <>
+//       <button>Home</button>
+      
+//       <button>My network ({networkCount.networks >= 100 ? "99+" : networkCount.networks})</button>
+//       <button>Jobs {networkCount.jobs}</button>
+//       <button>Messaging ({networkCount.messaging})</button>
+//       <button>Notifications ({networkCount.notifications})</button>
+
+//       <button>Me ({totalNotificationCount})</button>
+//     </>
+//   )
+// }
+
+//ATOM FAMILY
+function App(){
   return <RecoilRoot>
-    <MainApp />
+    <Todo id={1}/>
+    <Todo id={2}/>
   </RecoilRoot>
 }
-
-function MainApp() {
-  const [networkCount, setNetworkCount] = useRecoilState(notifications)
-  const totalNotificationCount = useRecoilValue(totalNotificationSelector);
-
-  
-  useEffect(() => {
-    // fetch
-    axios.get("https://sum-server.100xdevs.com/notifications")
-      .then(res => {
-        setNetworkCount(res.data)
-      })
-  }, [])
-
-  return (
+function Todo({id}){
+  const currentTodo=useRecoilValue(todosAtomFamily(id));
+  return(
     <>
-      <button>Home</button>
-      
-      <button>My network ({networkCount.networks >= 100 ? "99+" : networkCount.networks})</button>
-      <button>Jobs {networkCount.jobs}</button>
-      <button>Messaging ({networkCount.messaging})</button>
-      <button>Notifications ({networkCount.notifications})</button>
-
-      <button>Me ({totalNotificationCount})</button>
+    {currentTodo.title}
+    <br />
+    {currentTodo.description}
+    <br />
+    <br />
     </>
   )
 }
