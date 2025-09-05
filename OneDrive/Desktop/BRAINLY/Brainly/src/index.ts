@@ -9,11 +9,7 @@ import { random } from "./util";
 const JWT_USER = "fnejnfjnefj";
 const app = express();
 app.use(express.json());
-app.use(cors({
-  origin: "http://localhost:5173",
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-}));
+app.use(cors());
 app.post("/api/v1/signup", async (req, res) => {
   const requiredBody = z.object({
     username: z.string().min(3).max(50),
@@ -31,21 +27,19 @@ app.post("/api/v1/signup", async (req, res) => {
 
   if (!parsedataWithSuccess.success) {
     return res.status(411).json({
-      message: "Error in inputs",
+      message: "Give Strong Password!",
     });
   }
 
   const { username, password } = req.body;
   const hashedPwd = await bcrypt.hash(password, 12);
   try{
-      await UserModel.create({
+      const user=await UserModel.create({
       username: username,
       password: hashedPwd,
     });
-
-    return res.status(200).json({
-      message: "Signed Up",
-    });
+    const token = jwt.sign({ id: user._id.toString() }, JWT_USER);
+    return res.status(200).json({ token });
   }
   catch{
     return res.status(411).json({
@@ -73,9 +67,9 @@ app.post("/api/v1/signin", async (req, res) => {
 });
 
 app.post("/api/v1/content",Middleware,async(req,res)=>{
-    const {link,type}=req.body;
+    const {link,type,title}=req.body;
     await ContentModel.create({
-      link,type,
+      link,type,title,
       //@ts-ignore
       userId:req.userId,
       tags:[]
@@ -92,14 +86,19 @@ app.get("/api/v1/content",Middleware,async(req,res)=>{
     userId:userId
   }).populate("userId","username")
   res.json({
-    content
-  })
+    content: content.map((item) => ({
+      id: item._id,
+      link: item.link,
+      type: item.type,
+      title: item.title,
+  })),
+});
 })
 
 app.delete("/api/v1/content",Middleware,async(req,res)=>{
   const contentId=req.body.contentId;
   await ContentModel.deleteMany({
-    contentId,
+   _id:contentId,
     //@ts-ignore
     //make sure user owns this data
     userId:req.userId

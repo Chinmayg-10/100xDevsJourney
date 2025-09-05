@@ -51,6 +51,7 @@ export function Login() {
         localStorage.setItem("token", res.data.token);
         alert("Logged in successfully!");
       } else {
+        localStorage.setItem("token",res.data.token);
         alert("Account created successfully!");
         SetState("Login");
       }

@@ -6,8 +6,9 @@ const userSchema=new Schema({
     password:String
 })
 const contentSchema=new Schema({
-    userId:[{type:mongoose.Types.ObjectId, ref:"user",required:true}],
+    userId:{type:mongoose.Types.ObjectId, ref:"user",required:true},
     tags:[{type:mongoose.Types.ObjectId, ref:"Tag"}],
+    type:String,
     link:String,
     title:String,
 })

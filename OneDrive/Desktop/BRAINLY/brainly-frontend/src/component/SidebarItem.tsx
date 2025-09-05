@@ -1,20 +1,18 @@
-
-import type { ReactElement } from "react";
-
-interface ItemContent{
-    text:string,
-    icon:ReactElement
+interface SidebarItemProps {
+  text: string;
+  icon: React.ReactNode;
+  onClick?: () => void;   // ✅ allow click
 }
-export function SidebarItem(props:ItemContent){
-    return(
-        <div className="flex text-gray-800 py-4 cursor-pointer hover:bg-gray-200 max-w-48 rounded pl-4 transition-all duration-150">
-            <div className="pr-2">
-                {props.icon}
-            </div>
-            <div className="pl-2">
-                {props.text}
-            </div>
-            
-        </div>
-    )
+
+export function SidebarItem({ text, icon, onClick }: SidebarItemProps) {
+  return (
+    <button
+      onClick={onClick}   // ✅ this must be here
+      className="flex items-center w-full px-4 py-2 mt-2 text-gray-700 
+                 hover:bg-gray-100 rounded-lg transition-all duration-200"
+    >
+      <span className="mr-3">{icon}</span>
+      <span>{text}</span>
+    </button>
+  );
 }

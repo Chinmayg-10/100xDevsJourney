@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 200">
+  <!-- Background Circle -->
+  <circle cx="125" cy="100" r="90" fill="#f3f4f6" />
+
+  <!-- Folder Shape -->
+  <rect x="65" y="80" width="120" height="70" rx="8" fill="#e5e7eb" />
+  <rect x="65" y="65" width="60" height="25" rx="6" fill="#cbd5e1" />
+
+  <!-- Floating Icons -->
+  <circle cx="95" cy="55" r="12" fill="#1DA1F2" />
+  <text x="95" y="60" text-anchor="middle" font-size="14" fill="white">t</text>
+
+  <circle cx="155" cy="50" r="12" fill="#FF0000" />
+  <polygon points="152,46 162,50 152,54" fill="white" />
+
+  <circle cx="200" cy="90" r="12" fill="#8b5cf6" />
+  <rect x="195" y="85" width="10" height="10" rx="2" fill="white" />
+
+  <!-- Caption -->
+  <text x="125" y="170" text-anchor="middle" font-size="14" fill="#6b7280">
+    No notes added yet
+  </text>
+</svg>
